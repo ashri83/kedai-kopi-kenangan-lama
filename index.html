@@ -36,6 +36,20 @@
         .navbar-nav a:hover::after {
             transform: scaleX(0.5);
         }
+        .mobile-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 0.1rem;
+            background-color: #b6895b;
+            transform: scaleX(0);
+            transition: transform 0.2s linear;
+        }
+        .mobile-nav a:hover::after {
+            transform: scaleX(0.5);
+        }
         .cta {
             background-color: #b6895b; /* Cokelat keemasan */
             color: white;
@@ -67,17 +81,28 @@
             background-color: #a0784a;
         }
         /* Hamburger Menu untuk Mobile */
+        #hamburger-menu {
+            display: none;
+        }
         @media (max-width: 768px) {
+            #hamburger-menu {
+                display: block;
+            }
             .navbar-nav {
+                display: none; /* Sembunyikan navbar desktop di mobile */
+            }
+            .mobile-nav {
                 position: absolute;
                 top: 100%;
                 right: -100%;
                 background-color: #fff;
-                width: 30rem;
+                width: 80vw;
+                max-width: 30rem;
                 height: 100vh;
-                transition: right 0.3s;
+                transition: right 0.3s ease-in-out;
+                z-index: 40;
             }
-            .navbar-nav.active {
+            .mobile-nav.active {
                 right: 0;
             }
         }
@@ -101,10 +126,10 @@
             <div class="navbar-extra flex space-x-2">
                 <a href="#" id="search" class="text-white hover:text-[#b6895b]"><i data-feather="search"></i></a>
                 <a href="#" id="shopping-cart" class="text-white hover:text-[#b6895b]"><i data-feather="shopping-cart"></i></a>
-                <a href="#" id="hamburger-menu" class="text-white hover:text-[#b6895b] md:hidden"><i data-feather="menu"></i></a>
+                <a href="#" id="hamburger-menu" class="text-white hover:text-[#b6895b]"><i data-feather="menu"></i></a>
             </div>
         </div>
-        <div class="navbar-nav hidden md:hidden absolute top-full right-0">
+        <div class="mobile-nav hidden">
             <div class="flex flex-col space-y-4 p-4">
                 <a href="#home" class="text-black text-2xl hover:text-[#b6895b]">Home</a>
                 <a href="#about" class="text-black text-2xl hover:text-[#b6895b]">Tentang Kami</a>
@@ -190,7 +215,7 @@
             <div class="flex flex-col lg:flex-row gap-8 bg-[#222] p-8 rounded-lg">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.719677270596!2d106.71675367957054!3d-6.370757522563289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef590535719f%3A0xe043a5cbfbb56d30!2sPondok%20Petir%2C%20Bojongsari%2C%20Depok%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1708323707653!5m2!1sen!2sid" class="w-full h-96 rounded-lg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="w-full lg:w-1/2">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfqooOGyjKnEyYKwki8aBqa8HhZG09FQdsINadzprN0tyJ8xg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
+                    <iframe src="https://docs.google.com/forms/d/e/your_form_id/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
                 </div>
             </div>
         </div>
@@ -212,7 +237,7 @@
                 <a href="#contact" class="text-white hover:text-[#010101] px-2 py-1">Kontak</a>
             </div>
             <div class="credit text-sm">
-                <p>Created by <a href="" class="text-[#010101] font-bold hover:text-black">ashridigital</a>. | © 2025.</p>
+                <p>Created by <a href="" class="text-[#010101] font-bold hover:text-black">ashririswandi</a>. | © 2024.</p>
             </div>
         </div>
     </footer>
@@ -225,26 +250,30 @@
     <!-- Hamburger Menu dan Smooth Scroll -->
     <script>
         // Hamburger Menu Toggle
-        const navbarNav = document.querySelector('.navbar-nav');
+        const mobileNav = document.querySelector('.mobile-nav');
         const hamburger = document.querySelector('#hamburger-menu');
-        hamburger.onclick = () => {
-            navbarNav.classList.toggle('active');
+        hamburger.onclick = (e) => {
+            e.preventDefault();
+            mobileNav.classList.toggle('active');
+            console.log('Hamburger clicked, mobile-nav active:', mobileNav.classList.contains('active'));
         };
         document.addEventListener('click', function(e) {
-            if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
-                navbarNav.classList.remove('active');
+            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                console.log('Clicked outside, mobile-nav closed');
             }
         });
 
         // Smooth Scroll untuk Navigasi
-        document.querySelectorAll('.navbar-nav a').forEach(anchor => {
+        document.querySelectorAll('.navbar-nav a, .mobile-nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
-                    navbarNav.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    console.log('Navigated to:', targetId);
                 }
             });
         });
