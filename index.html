@@ -1,170 +1,253 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warkop Masa Lalu</title>
-
-    <!-- fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins: wght@100;300;400;700&display=swap" rel="stylesheet" />
-
-    <!-- feathers icon-->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <!-- my styles-->
-    <link rel="stylesheet" href="style.css"/>
-  </head>
-
-  <body>
-    <!--Navbar Start-->
-    <nav class="navbar">
-      <a href="#" class="navbar-logo">kenangan<span>lama</span>.</a>
-      
-      
-      <div class="navbar-nav">
-        <a href="#home">Home</a>
-        <a href="#about">Tentang Kami</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Kontak</a>
-      </div> 
-
-      <div class="navbar-extra">
-        <a href="#" id="search"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-      </div>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-logo span {
+            color: #b6895b; /* Cokelat keemasan dari --primary */
+        }
+        .navbar-nav a {
+            position: relative;
+        }
+        .navbar-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 0.1rem;
+            background-color: #b6895b;
+            transform: scaleX(0);
+            transition: transform 0.2s linear;
+        }
+        .navbar-nav a:hover::after {
+            transform: scaleX(0.5);
+        }
+        .cta {
+            background-color: #b6895b; /* Cokelat keemasan */
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+        }
+        .cta:hover {
+            background-color: #a0784a; /* Sedikit lebih gelap */
+        }
+        .menu-card-img {
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .btn {
+            background-color: #b6895b;
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 0.5rem;
+            font-size: 1.7rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #a0784a;
+        }
+        /* Hamburger Menu untuk Mobile */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                position: absolute;
+                top: 100%;
+                right: -100%;
+                background-color: #fff;
+                width: 30rem;
+                height: 100vh;
+                transition: right 0.3s;
+            }
+            .navbar-nav.active {
+                right: 0;
+            }
+        }
+        /* Text Shadow untuk Hero */
+        .hero-text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <!-- Navbar Start -->
+    <nav class="bg-[url('img/nav-bg.jpg')] bg-cover bg-center bg-black/80 border-b border-[#513c28] fixed top-0 left-0 right-0 z-50 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="navbar-logo text-2xl font-bold text-white italic">kenangan<span>lama</span>.</a>
+            <div class="navbar-nav hidden md:flex space-x-4">
+                <a href="#home" class="text-white text-lg hover:text-[#b6895b]">Home</a>
+                <a href="#about" class="text-white text-lg hover:text-[#b6895b]">Tentang Kami</a>
+                <a href="#menu" class="text-white text-lg hover:text-[#b6895b]">Menu</a>
+                <a href="#contact" class="text-white text-lg hover:text-[#b6895b]">Kontak</a>
+            </div>
+            <div class="navbar-extra flex space-x-2">
+                <a href="#" id="search" class="text-white hover:text-[#b6895b]"><i data-feather="search"></i></a>
+                <a href="#" id="shopping-cart" class="text-white hover:text-[#b6895b]"><i data-feather="shopping-cart"></i></a>
+                <a href="#" id="hamburger-menu" class="text-white hover:text-[#b6895b] md:hidden"><i data-feather="menu"></i></a>
+            </div>
+        </div>
+        <div class="navbar-nav hidden md:hidden absolute top-full right-0">
+            <div class="flex flex-col space-y-4 p-4">
+                <a href="#home" class="text-black text-2xl hover:text-[#b6895b]">Home</a>
+                <a href="#about" class="text-black text-2xl hover:text-[#b6895b]">Tentang Kami</a>
+                <a href="#menu" class="text-black text-2xl hover:text-[#b6895b]">Menu</a>
+                <a href="#contact" class="text-black text-2xl hover:text-[#b6895b]">Kontak</a>
+            </div>
+        </div>
     </nav>
+    <!-- Navbar End -->
 
+    <!-- Hero Section Start -->
+    <section class="hero bg-[url('img/header2-bg.jpg')] bg-cover bg-center min-h-screen flex items-center relative" id="home">
+        <div class="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-black/80 to-transparent"></div>
+        <main class="content container mx-auto px-4 max-w-3xl relative z-10 text-left ml-4 md:ml-8">
+            <div class="bg-black/50 p-6 rounded-lg">
+                <h1 class="text-5xl md:text-7xl font-bold text-white hero-text-shadow mb-4 text-left">Mari Nikmati Secangkir <span class="text-[#b6895b]">Kopi</span></h1>
+                <p class="text-lg md:text-2xl text-white font-light leading-relaxed mb-6 hero-text-shadow text-left">Menikmati setiap sesap dengan nikmat tiada akhir hingga tetes terakhir. Aroma mantap cita rasa Nusantara</p>
+                <a href="#" class="cta text-left">Beli Sekarang</a>
+            </div>
+        </main>
+    </section>
+    <!-- Hero Section End -->
 
-<!--Navbar end-->
+    <!-- About Section Start -->
+    <section id="about" class="about pt-32 pb-6 px-4 bg-black/90">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-white mb-12"><span class="text-[#b6895b]">Tentang</span> Kami</h2>
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <div class="about-img w-full md:w-1/2">
+                    <img src="img/tentang-kami.jpg" alt="Tentang Kami" class="w-full object-cover rounded-lg">
+                </div>
+                <div class="content w-full md:w-1/2 px-4">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Kenapa memilih kopi kami?</h3>
+                    <p class="text-lg text-white font-light mb-4">Kopi kami dari petani lokal kopi berkualitas dengan sentuhan tradisional menjaga kualitas kopi turun-temurun.</p>
+                    <p class="text-lg text-white font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, ipsam beatae cum dolorem rerum ullam et consequuntur. Minus, corporis ratione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
 
-<!--Hero section start-->
-<section class="hero" id="home">
-  <main class="content">
-    <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
-    <p>Menikmati setiap sesap dengan nikmat tiada akhir hingga tetes terakhir. Aroma mantap cita rasa Nusantara</p>
-    <a href="#" class="cta">Beli Sekarang</a>
-  </main>
-</section>
+    <!-- Menu Section Start -->
+    <section id="menu" class="menu pt-32 pb-6 px-4 bg-black/90">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-white mb-4"><span class="text-[#b6895b]">Menu</span> Kami</h2>
+            <p class="text-lg text-white font-light text-center max-w-lg mx-auto mb-12">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, ducimus eaque? Placeat, impedit. Inventore, iusto.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="menu-card text-center pb-8">
+                    <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img">
+                    <h3 class="menu-card-title text-xl font-semibold text-white mt-4 mb-2">- Espresso -</h3>
+                    <p class="menu-card-price text-[#b6895b] text-lg">IDR 15K</p>
+                </div>
+                <div class="menu-card text-center pb-8">
+                    <img src="img/menu/2.jpg" alt="Latte" class="menu-card-img">
+                    <h3 class="menu-card-title text-xl font-semibold text-white mt-4 mb-2">- Latte -</h3>
+                    <p class="menu-card-price text-[#b6895b] text-lg">IDR 15K</p>
+                </div>
+                <div class="menu-card text-center pb-8">
+                    <img src="img/menu/3.jpg" alt="Americano" class="menu-card-img">
+                    <h3 class="menu-card-title text-xl font-semibold text-white mt-4 mb-2">- Americano -</h3>
+                    <p class="menu-card-price text-[#b6895b] text-lg">IDR 15K</p>
+                </div>
+                <div class="menu-card text-center pb-8">
+                    <img src="img/menu/1.jpg" alt="Kopi Susu" class="menu-card-img">
+                    <h3 class="menu-card-title text-xl font-semibold text-white mt-4 mb-2">- Kopi Susu -</h3>
+                    <p class="menu-card-price text-[#b6895b] text-lg">IDR 15K</p>
+                </div>
+                <div class="menu-card text-center pb-8">
+                    <img src="img/menu/1.jpg" alt="Kopi Saring Tradisional" class="menu-card-img">
+                    <h3 class="menu-card-title text-xl font-semibold text-white mt-4 mb-2">- Kopi Saring Tradisional -</h3>
+                    <p class="menu-card-price text-[#b6895b] text-lg">IDR 15K</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Menu Section End -->
 
-<!--Hero section end-->
+    <!-- Contact Section Start -->
+    <section id="contact" class="contact pt-32 pb-6 px-4 bg-black/90">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-white mb-4"><span class="text-[#b6895b]">Kontak</span> Kami</h2>
+            <p class="text-lg text-white font-light text-center max-w-lg mx-auto mb-12">Silakan isi formulir di bawah untuk menghubungi kami!</p>
+            <div class="flex flex-col lg:flex-row gap-8 bg-[#222] p-8 rounded-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.719677270596!2d106.71675367957054!3d-6.370757522563289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef590535719f%3A0xe043a5cbfbb56d30!2sPondok%20Petir%2C%20Bojongsari%2C%20Depok%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1708323707653!5m2!1sen!2sid" class="w-full h-96 rounded-lg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="w-full lg:w-1/2">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfqooOGyjKnEyYKwki8aBqa8HhZG09FQdsINadzprN0tyJ8xg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
 
-<!-- About section start-->
-<section id="about" class="about">
-<h2><span>Tentang</span> Kami</h2>
+    <!-- Footer Start -->
+    <footer class="bg-[#b6895b] text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="social flex justify-center space-x-4 mb-4">
+                <a href="#" class="text-white hover:text-[#010101]"><i data-feather="instagram"></i></a>
+                <a href="#" class="text-white hover:text-[#010101]"><i data-feather="twitter"></i></a>
+                <a href="#" class="text-white hover:text-[#010101]"><i data-feather="facebook"></i></a>
+            </div>
+            <div class="links flex justify-center space-x-4 mb-4">
+                <a href="#home" class="text-white hover:text-[#010101] px-2 py-1">Home</a>
+                <a href="#about" class="text-white hover:text-[#010101] px-2 py-1">Tentang Kami</a>
+                <a href="#menu" class="text-white hover:text-[#010101] px-2 py-1">Menu</a>
+                <a href="#contact" class="text-white hover:text-[#010101] px-2 py-1">Kontak</a>
+            </div>
+            <div class="credit text-sm">
+                <p>Created by <a href="" class="text-[#010101] font-bold hover:text-black">ashririswandi</a>. | © 2024.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
 
-<div class="row">
-  <div class="about-img">
-    <img src="img/tentang-kami.jpg" 
-    alt="Tentang Kami">
-  </div>
-
-  <div class="content">
-    <h3>Kenapa memilih kopi kami? </h3>
-    <p>Kopi kami dari petani lokal kopi berkualitas dengan sentuhan tradisionil menjaga kualitas kopi turun-temurun</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, ipsam beatae cum dolorem rerum ullam et consequuntur. Minus, corporis ratione.</p>
-  </div>
-</div>
-</section>
-
-<!-- About section end-->
-
-<!--Menu section start-->
-<section id="menu" class="menu">
-  <h2><span>Menu </span>Kami</h2>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, ducimus eaque? Placeat, impedit. Inventore, iusto.</p>
-
-  <div class="row">
-    <div class="menu-card">
-      <img src="img/menu/1.jpg"
-      alt="Espresso" class="menu-card-img">
-      <h3 class="menu-card-title">- Espresso -</h3>
-      <p class="menu-card-price">IDR 15K</p> 
-    </div>
-    <div class="menu-card">
-      <img src="img/menu/2.jpg"
-      alt="Latte" class="menu-card-img">
-      <h3 class="menu-card-title">- Latte -</h3>
-      <p class="menu-card-price">IDR 15K</p> 
-    </div>
-    <div class="menu-card">
-      <img src="img/menu/3.jpg"
-      alt="Americano" class="menu-card-img">
-      <h3 class="menu-card-title">- Americano -</h3>
-      <p class="menu-card-price">IDR 15K</p> 
-    </div>
-    <div class="menu-card">
-      <img src="img/menu/1.jpg"
-      alt="Kopi Susu" class="menu-card-img">
-      <h3 class="menu-card-title">- Kopi Susu -</h3>
-      <p class="menu-card-price">IDR 15K</p> 
-    </div>
-    <div class="menu-card">
-      <img src="img/menu/1.jpg"
-      alt="Kopi Saring Tradisional" class="menu-card-img">
-      <h3 class="menu-card-title">- Kopi Saring Tradisional -</h3>
-      <p class="menu-card-price">IDR 15K</p> 
-    </div>
-  </div>
-</section>
-
-<!--Menu section end-->
-<!-- Contact Section start-->
-<section id="contact" class="contact">
-<h2><span>Kontak </span>Kami</h2>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, quisquam!</p>
-<div class="row">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15860.719677270596!2d106.71675367957054!3d-6.370757522563289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef590535719f%3A0xe043a5cbfbb56d30!2sPondok%20Petir%2C%20Bojongsari%2C%20Depok%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1708323707653!5m2!1sen!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-
-  <form action="">
-  <div class="input-group">
-    <i data-feather="user"></i>
-    <input type="text"
-    placeholder="nama">
-  </div>
-  <div class="input-group">
-    <i data-feather="mail"></i>
-    <input type="text"
-    placeholder="email">
-  </div>
-  <div class="input-group">
-    <i data-feather="phone"></i>
-    <input type="text"
-    placeholder="no hp">
-  </div>
-  <button type="submit" class="btn">kirim pesan</button>
-</form>
-</div>
-</section>
-<!-- Contact Section end-->
-
-<!-- Footer start -->
-<footer>
-  <div class="social">
-    <a href="#"><i data-feather="instagram"></i></a>
-    <a href="#"><i data-feather="twitter"></i></a>
-    <a href="#"><i data-feather="facebook"></i></a>
-  </div>
-  <div class="links">
-    <a href="#home">Home</a>
-    <a href="#about">Tentang Kami</a>
-    <a href="#menu">Menu</a>
-    <a href="#contact">Kontak</a>
-  </div>
-
-  <div class="credit">
-    <p>Created by <a href="">ashririswandi</a>. | &copy; 2024.</p>
-  </div>
-</footer>
-<!-- Footer end -->
-
-    <!-- feathers icons-->
+    <!-- Feather Icons -->
     <script>
-      feather.replace();
+        feather.replace();
     </script>
+    <!-- Hamburger Menu dan Smooth Scroll -->
+    <script>
+        // Hamburger Menu Toggle
+        const navbarNav = document.querySelector('.navbar-nav');
+        const hamburger = document.querySelector('#hamburger-menu');
+        hamburger.onclick = () => {
+            navbarNav.classList.toggle('active');
+        };
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove('active');
+            }
+        });
 
-    <!--My Javascript-->
-    <script src="js/script.js"></script>
-  </body>
+        // Smooth Scroll untuk Navigasi
+        document.querySelectorAll('.navbar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    navbarNav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
