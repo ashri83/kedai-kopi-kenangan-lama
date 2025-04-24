@@ -87,7 +87,7 @@
         .mobile-nav {
             display: none; /* Sembunyikan secara default */
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             #hamburger-menu {
                 display: block;
             }
@@ -268,7 +268,7 @@
             e.preventDefault();
             if (mobileNav) {
                 mobileNav.classList.toggle('active');
-                console.log('Hamburger clicked, mobile-nav active:', mobileNav.classList.contains('active'));
+                console.log('Hamburger clicked:', mobileNav.classList.contains('active'));
             } else {
                 console.error('Cannot toggle mobile-nav: element is null');
             }
